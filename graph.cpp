@@ -57,3 +57,29 @@ void Graph::generate_probability_mappings() {
         pair.second->calculate_probabilities();
     }
 }
+
+Vertex * Graph::get_next_word(Vertex * word) {
+    std::map<std::string, double> probabilities = word->probabilities;
+
+    double probability = (double) rand() / RAND_MAX;
+
+    double cumulative_probability = 0.0;
+    for (auto const& pair: probabilities) {
+        cumulative_probability += pair.second;
+        if (cumulative_probability >= probability) {
+            return vertices[pair.first];
+        }
+    }
+    return nullptr;
+}
+
+std::vector<std::string> get_words_from_text(std::string text_path) {
+    std::ifstream file(text_path);
+    std::string word;
+    std::vector<std::string> words;
+    while (file >> word) {
+        words.push_back(word);
+    }
+    file.close();
+    return words;
+}
