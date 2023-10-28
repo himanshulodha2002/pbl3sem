@@ -38,3 +38,22 @@ void Vertex::calculate_probabilities() {
         probabilities[pair.first] = probability;
     }
 }
+
+Vertex * Graph::get_vertex(std::string value) {
+    if (vertices.find(value) == vertices.end()) {
+        vertices[value] = new Vertex(value);
+    }
+    return vertices[value];
+}
+
+void Graph::add_edge(std::string v1, std::string v2) {
+    Vertex * vertex1 = get_vertex(v1);
+    Vertex * vertex2 = get_vertex(v2);
+    vertex1->increment_edge(vertex2);
+}
+
+void Graph::generate_probability_mappings() {
+    for (auto const& pair: vertices) {
+        pair.second->calculate_probabilities();
+    }
+}

@@ -1,3 +1,7 @@
+#ifndef GRAPH_H
+#define GRAPH_H
+
+
 #include <string>
 #include <map>
 #include <vector>
@@ -34,3 +38,9 @@ public:
     void generate_probability_mappings();
     Vertex * get_next_word(Vertex * word);
 };
+std::vector<std::string> get_words_from_text(std::string text_path);
+std::vector<std::string> get_files_from_directory(std::string directory_path);
+Graph make_graph(std::vector<std::string> words);
+std::vector<std::string> compose(Graph g, std::vector<std::string> words, int length=50);
+
+#endif
