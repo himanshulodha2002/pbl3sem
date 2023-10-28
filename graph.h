@@ -24,3 +24,13 @@ public:
     void increment_edge(Vertex * vertex);
     void calculate_probabilities();
 };
+
+class Graph {
+public:
+    std::map<std::string, Vertex *> vertices;
+
+    Vertex * get_vertex(std::string value);
+    void add_edge(std::string v1, std::string v2);
+    void generate_probability_mappings();
+    Vertex * get_next_word(Vertex * word);
+};
