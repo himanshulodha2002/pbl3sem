@@ -92,7 +92,7 @@ vector<string> remove_punctuation(vector<string> words) {
         string no_punct_word = "";
         for (char c : word) {
             if (isalpha(c)) {
-                no_punct_word += c;
+                no_punct_word += tolower(c);
             }
         }
         no_punct.push_back(no_punct_word);
