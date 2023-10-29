@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <random>
+#include <ctime>
 
 using namespace std;
 
@@ -138,6 +139,7 @@ vector<string> compose(Graph g, vector<string> words, int length=50) {
 }
 
 int main() {
+    srand(time(nullptr));
     vector<string> words1 = get_words_from_text("hp_sorcerer_stone.txt");
     vector<string> words = remove_punctuation(words1);
 
