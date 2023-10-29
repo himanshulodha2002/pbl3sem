@@ -76,7 +76,7 @@ int main()
     srand(time(nullptr));
     std::vector<std::string> words1 = get_words_from_text("hp_sorcerer_stone.txt");
     std::vector<std::string> words = remove_punctuation(words1);
-    // std::cout << "Number of words read: " << words.size() << std::endl;
+    
     Graph g = make_graph(words);
     std::vector<std::string> composition = compose(g, words, 100);
 

@@ -9,7 +9,6 @@
 
 using namespace std;
 
-//#include "graph.h"
 class Vertex;
 
 class Edge {
@@ -99,6 +98,7 @@ public:
         return nullptr;
     }
 };
+
 vector<string> get_words_from_text(string text_path) {
     ifstream file(text_path);
     string word;
