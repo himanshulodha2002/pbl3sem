@@ -3,6 +3,8 @@
 #include <fstream>
 #include <random>
 
+using namespace std;
+
 Edge::Edge(Vertex * dest) {
     this->dest = dest;
     this->weight = 1;
@@ -82,4 +84,70 @@ std::vector<std::string> get_words_from_text(std::string text_path) {
     }
     file.close();
     return words;
+}
+
+vector<string> remove_punctuation(vector<string> words) {
+    vector<string> no_punct;
+    for (string word : words) {
+        string no_punct_word = "";
+        for (char c : word) {
+            if (isalpha(c)) {
+                no_punct_word += c;
+            }
+        }
+        no_punct.push_back(no_punct_word);
+    }
+    return no_punct;
+} 
+
+Graph make_graph(vector<string> words) {
+    Graph g;
+    Vertex * prev_word = nullptr;
+    // for each word
+    for (string word : words) {
+        // check that word is in graph, and if not then add it
+        Vertex * word_vertex = g.get_vertex(word);
+
+        // if there was a previous word, then add an edge if does not exist
+        // if exists, increment weight by 1
+        if (prev_word) {
+            // check if edge exists from previous word to current word
+            prev_word->increment_edge(word_vertex);
+        }
+
+        prev_word = word_vertex;
+    }
+
+    g.generate_probability_mappings();
+
+    return g;
+}
+
+vector<string> compose(Graph g, vector<string> words, int length=50) {
+    vector<string> composition;
+    Vertex * word = g.get_vertex(words[rand() % words.size()]);
+    for (int i = 0; i < length; i++) {
+        composition.push_back(word->value);
+        word = g.get_next_word(word);
+        if (!word) {
+            word = g.get_vertex(words[rand() % words.size()]);
+        }
+    }
+
+    return composition;
+}
+
+int main() {
+    vector<string> words1 = get_words_from_text("hp_sorcerer_stone.txt");
+    vector<string> words = remove_punctuation(words1);
+
+    Graph g = make_graph(words);
+    vector<string> composition = compose(g, words, 100);
+    
+    for(string word : composition) {
+        cout << word << " ";
+    }
+    cout << endl;
+
+    return 0;
 }

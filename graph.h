@@ -5,7 +5,7 @@
 #include <string>
 #include <map>
 #include <vector>
-
+using namespace std;
 class Vertex;
 
 class Edge {
@@ -19,11 +19,11 @@ public:
 
 class Vertex {
 public:
-    std::string value;
-    std::map<std::string, Edge *> edges;
-    std::map<std::string, double> probabilities;
+    string value;
+    map<string, Edge *> edges;
+    map<string, double> probabilities;
 
-    Vertex(std::string value);
+    Vertex(string value);
     void add_edge(Vertex * vertex);
     void increment_edge(Vertex * vertex);
     void calculate_probabilities();
@@ -31,16 +31,16 @@ public:
 
 class Graph {
 public:
-    std::map<std::string, Vertex *> vertices;
+    map<string, Vertex *> vertices;
 
-    Vertex * get_vertex(std::string value);
-    void add_edge(std::string v1, std::string v2);
+    Vertex * get_vertex(string value);
+    void add_edge(string v1, string v2);
     void generate_probability_mappings();
     Vertex * get_next_word(Vertex * word);
 };
-std::vector<std::string> get_words_from_text(std::string text_path);
-std::vector<std::string> get_files_from_directory(std::string directory_path);
-Graph make_graph(std::vector<std::string> words);
-std::vector<std::string> compose(Graph g, std::vector<std::string> words, int length=50);
+vector<string> get_words_from_text(string text_path);
+vector<string> get_files_from_directory(string directory_path);
+Graph make_graph(vector<string> words);
+vector<string> compose(Graph g, vector<string> words, int length=50);
 
 #endif
