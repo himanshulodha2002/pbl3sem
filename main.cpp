@@ -12,17 +12,6 @@ std::vector<std::string> get_words_from_text(std::string text_path)
     std::vector<std::string> words;
     while (file >> word)
     {
-        words.push_back(word);
-    }
-    file.close();
-    return words;
-}
-
-std::vector<std::string> remove_punctuation(std::vector<std::string> words)
-{
-    std::vector<std::string> no_punct;
-    for (std::string word : words)
-    {
         std::string no_punct_word = "";
         for (char c : word)
         {
@@ -31,10 +20,29 @@ std::vector<std::string> remove_punctuation(std::vector<std::string> words)
                 no_punct_word += tolower(c);
             }
         }
-        no_punct.push_back(no_punct_word);
+        words.push_back(no_punct_word);
     }
-    return no_punct;
+    file.close();
+    return words;
 }
+
+// std::vector<std::string> remove_punctuation(std::vector<std::string> words)
+// {
+//     std::vector<std::string> no_punct;
+//     for (std::string word : words)
+//     {
+//         std::string no_punct_word = "";
+//         for (char c : word)
+//         {
+//             if (isalpha(c))
+//             {
+//                 no_punct_word += tolower(c);
+//             }
+//         }
+//         no_punct.push_back(no_punct_word);
+//     }
+//     return no_punct;
+// }
 
 Graph make_graph(std::vector<std::string> words)
 {
@@ -74,8 +82,8 @@ std::vector<std::string> compose(Graph g, std::vector<std::string> words, int le
 int main()
 {
     srand(time(nullptr));
-    std::vector<std::string> words1 = get_words_from_text("hp_sorcerer_stone.txt");
-    std::vector<std::string> words = remove_punctuation(words1);
+    std::vector<std::string> words = get_words_from_text("hp_sorcerer_stone.txt");
+    //std::vector<std::string> words = remove_punctuation(words1);
     
     Graph g = make_graph(words);
     std::vector<std::string> composition = compose(g, words, 100);

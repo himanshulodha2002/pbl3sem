@@ -18,7 +18,7 @@ public:
 
     Edge(Vertex * dest) {
         this->dest = dest;
-        this->weight = 1;
+        weight = 1;
     }
 
     void increment_weight() {
@@ -104,26 +104,32 @@ vector<string> get_words_from_text(string text_path) {
     string word;
     vector<string> words;
     while (file >> word) {
-        words.push_back(word);
-    }
-    file.close();
-    return words;
-}
-
-vector<string> remove_punctuation(vector<string> words) {
-    vector<string> no_punct;
-    for (string word : words) {
         string no_punct_word = "";
         for (char c : word) {
             if (isalpha(c)) {
                 no_punct_word += tolower(c);
             }
         }
-        no_punct.push_back(no_punct_word);
+        words.push_back(no_punct_word);
     }
+    file.close();
+    return words;
+}
+
+// vector<string> remove_punctuation(vector<string> words) {
+//     vector<string> no_punct;
+//     for (string word : words) {
+//         string no_punct_word = "";
+//         for (char c : word) {
+//             if (isalpha(c)) {
+//                 no_punct_word += tolower(c);
+//             }
+//         }
+//         no_punct.push_back(no_punct_word);
+//     }
     
-    return no_punct;
-} 
+//     return no_punct;
+// } 
 
 Graph make_graph(vector<string> words) {
     Graph g;
@@ -164,8 +170,8 @@ vector<string> compose(Graph g, vector<string> words, int length=50) {
 
 int main() {
     srand(time(nullptr));
-    vector<string> words1 = get_words_from_text("hp_sorcerer_stone.txt");
-    vector<string> words = remove_punctuation(words1);
+    vector<string> words = get_words_from_text("hp_sorcerer_stone.txt");
+    //vector<string> words = remove_punctuation(words1);
 
     Graph g = make_graph(words);
     vector<string> composition = compose(g, words, 100);
