@@ -107,7 +107,7 @@ vector<string> compose(const Graph &g, const vector<string> &words, int length =
 int main()
 {
     srand(time(nullptr));
-    vector<string> words = get_words_from_text("hp_sorcerer_stone.txt");
+    vector<string> words = get_words_from_text("shakespeare.txt");
     Graph g = make_graph(words);
     vector<string> composition = compose(g, words, 100);
 
