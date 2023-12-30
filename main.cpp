@@ -6,11 +6,35 @@
 #include "main_data.h"
 
 using namespace std;
-int most_found(const vector<int>& array);
-int k_nearest_neighbors(const vector<float>& point, const vector<vector<float>>& data, const vector<int>& labels, int k = 3);
+int most_found(const vector<int> &array);
+int k_nearest_neighbors(const vector<float> &point, const vector<vector<float>> &data, const vector<int> &labels, int k = 3)
+{
+    vector<pair<float, int>> distances;
 
+    for (int i = 0; i < data.size(); ++i)
+    {
+        float euclidean_dist = 0;
+        for (int d = 0; d < point.size(); ++d)
+        {
+            float dist = point[d] - data[i][d];
+            euclidean_dist += dist * dist;
+        }
+        distances.push_back({sqrt(euclidean_dist), i});
+    }
 
-int main() {
+    sort(distances.begin(), distances.end());
+
+    vector<int> neighbor_labels;
+    for (int i = 0; i < k; ++i)
+    {
+        neighbor_labels.push_back(labels[distances[i].second]);
+    }
+
+    return most_found(neighbor_labels);
+}
+
+int main()
+{
     vector<float> point = {0, 137, 40, 35, 168, 43.1, 2.288, 33};
     int label = k_nearest_neighbors(point, mydata, mylabels);
     cout << "The predicted label for the point is: " << label << endl;
