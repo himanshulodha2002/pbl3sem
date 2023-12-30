@@ -1,3 +1,5 @@
+// Simple w/o priority queues
+
 #include <iostream>
 #include <vector>
 #include <map>
