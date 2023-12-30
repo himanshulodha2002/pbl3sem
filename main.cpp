@@ -6,7 +6,24 @@
 #include "main_data.h"
 
 using namespace std;
-int most_found(const vector<int> &array);
+int most_found(const vector<int> &array)
+{
+    map<int, int> count;
+    int max_count = 0;
+    int most_counted = array[0];
+
+    for (const auto &item : array)
+    {
+        count[item]++;
+        if (count[item] > max_count)
+        {
+            max_count = count[item];
+            most_counted = item;
+        }
+    }
+
+    return most_counted;
+}
 int k_nearest_neighbors(const vector<float> &point, const vector<vector<float>> &data, const vector<int> &labels, int k = 3)
 {
     vector<pair<float, int>> distances;
