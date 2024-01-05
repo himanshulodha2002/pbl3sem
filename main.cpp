@@ -4,8 +4,8 @@
 #include <vector>
 #include <map>
 #include <cmath>
-#include <algorithm>
-#include "main_data.h"
+#include <algorithm>   // for sort
+#include "main_data.h" //has vars mydata and mylabels.
 
 using namespace std;
 int most_found(const vector<int> &array)
