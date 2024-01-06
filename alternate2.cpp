@@ -4,18 +4,26 @@
 #include <vector>
 #include <map>
 #include <cmath>
-// #include <algorithm>
-// #include <queue>
 #include "main_data.h"
 
 using namespace std;
 
-void priorityQ(vector<pair<float, int>> &v, pair<float, int> p)
-{
+// void priorityQ(vector<pair<float, int>> &v, pair<float, int> p)
+// {
+//   auto it = v.begin();
+//   for (; it != v.end() && p.first > it->first; ++it)
+//     ;
+//   v.insert(it, p);
+// }
+void priorityQ(vector<pair<float, int>>& v, pair<float, int> p, int k) {
   auto it = v.begin();
-  for (; it != v.end() && p.first > it->first; ++it)
-    ;
-  v.insert(it, p);
+  for (; it != v.end() && p.first > it->first; ++it);
+  if (it != v.end() || v.size() < k) {
+    v.insert(it, p);
+  }
+  if (v.size() > k) {
+    v.erase(v.end() - 1);
+  }
 }
 
 int most_found(vector<int> &array)
@@ -38,28 +46,24 @@ int most_found(vector<int> &array)
 }
 int k_nearest_neighbors(vector<float> point, vector<vector<float>> data, vector<int> labels, int k = 3)
 {
-  // priority_queue<pair<float, int>, vector<pair<float, int>>, greater<pair<float, int>>> pq;
   vector<pair<float, int>> pq;
   for (int i = 0; i < data.size(); ++i)
   {
-    float eucledian_dist = 0;
+    float e_dist = 0;
     for (int d = 0; d < point.size(); ++d)
     {
       float dist = point[d] - data[i][d];
-      eucledian_dist += dist * dist;
+      e_dist += dist * dist;
     }
-    eucledian_dist = sqrt(eucledian_dist);
-    // pq.push(make_pair(eucledian_dist, i));
-    priorityQ(pq, make_pair(eucledian_dist, i));
+    e_dist = sqrt(e_dist);
+    //priorityQ(pq, make_pair(e_dist, i));
+    priorityQ(pq, make_pair(e_dist, i),k);
   }
 
   vector<int> neighbor_labels;
   for (int i = 0; i < k; ++i)
   {
-    neighbor_labels.push_back(labels[pq[0].second]);
-    pq.erase(pq.begin());
-    //neighbor_labels.push_back(labels[pq.top().second]);
-    //pq.pop();
+    neighbor_labels.push_back(labels[pq[i].second]);
   }
 
   return most_found(neighbor_labels);
