@@ -1,14 +1,11 @@
 // using inbuilt priority queue
 
-
 #include <iostream>
 #include <vector>
 #include <map>
 #include <cmath>
-//#include <algorithm>
 #include <queue>
 #include "main_data.h"
-
 using namespace std;
 
 int most_found(vector<int> &array)
@@ -16,7 +13,6 @@ int most_found(vector<int> &array)
     map<int, int> count;
     int max_count = 0;
     int most_counted = array[0];
-
     for (auto &item : array)
     {
         count[item]++;
@@ -58,12 +54,8 @@ int k_nearest_neighbors(vector<float> point, vector<vector<float>> data, vector<
 
 int main()
 {
-    
-    vector<float> point = {0,137,40,35,168,43.1,2.288,33};
-
+    vector<float> point = {0, 137, 40, 35, 168, 43.1, 2.288, 33};
     int label = k_nearest_neighbors(point, mydata, mylabels);
-
     cout << "The predicted label for the point is: " << label << endl;
-
     return 0;
 }

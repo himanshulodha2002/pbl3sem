@@ -3,8 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include <cmath>#include "main_data.h" //has vars mydata and mylabels.
-
+#include <cmath>
+#include "main_data.h" //has vars mydata and mylabels.
 using namespace std;
 
 void priorityQ(vector<pair<float, int>> &v, pair<float, int> p)
@@ -58,12 +58,8 @@ int k_nearest_neighbors(vector<float> point, vector<vector<float>> data, vector<
 
 int main()
 {
-
   vector<float> point = {0, 137, 40, 35, 168, 43.1, 2.288, 33};
-
   int label = k_nearest_neighbors(point, mydata, mylabels);
-
   cout << "The predicted label for the point is: " << label << endl;
-
   return 0;
 }
