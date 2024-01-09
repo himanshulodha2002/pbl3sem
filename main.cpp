@@ -40,9 +40,9 @@ int k_nearest_neighbors(const vector<float> &point, const vector<vector<float>> 
         }
         distances.push_back({sqrt(euclidean_dist), i});
     }
-
+////////////////////////////////////////////////////////////////////////////////////////////
     sort(distances.begin(), distances.end());
-
+////////////////////////////////////////////////////////////////////////////////////////////
     vector<int> neighbor_labels;
     for (int i = 0; i < k; ++i)
     {

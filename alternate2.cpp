@@ -3,31 +3,16 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include <cmath>
-#include "main_data.h"
+#include <cmath>#include "main_data.h" //has vars mydata and mylabels.
 
 using namespace std;
 
-// void priorityQ(vector<pair<float, int>> &v, pair<float, int> p)
-// {
-//   auto it = v.begin();
-//   for (; it != v.end() && p.first > it->first; ++it)
-//     ;
-//   v.insert(it, p);
-// }
-void priorityQ(vector<pair<float, int>> &v, pair<float, int> p, int k)
+void priorityQ(vector<pair<float, int>> &v, pair<float, int> p)
 {
   auto it = v.begin();
   for (; it != v.end() && p.first > it->first; ++it)
     ;
-  if (it != v.end() || v.size() < k)
-  {
-    v.insert(it, p);
-  }
-  if (v.size() > k)
-  {
-    v.erase(v.end() - 1);
-  }
+  v.insert(it, p);
 }
 
 int most_found(vector<int> &array)
@@ -45,7 +30,6 @@ int most_found(vector<int> &array)
       most_counted = item;
     }
   }
-
   return most_counted;
 }
 int k_nearest_neighbors(vector<float> point, vector<vector<float>> data, vector<int> labels, int k = 3)
@@ -60,8 +44,7 @@ int k_nearest_neighbors(vector<float> point, vector<vector<float>> data, vector<
       e_dist += dist * dist;
     }
     e_dist = sqrt(e_dist);
-    // priorityQ(pq, make_pair(e_dist, i));
-    priorityQ(pq, make_pair(e_dist, i), k);
+    priorityQ(pq, make_pair(e_dist, i));
   }
 
   vector<int> neighbor_labels;

@@ -31,8 +31,9 @@ int most_found(vector<int> &array)
 }
 int k_nearest_neighbors(vector<float> point, vector<vector<float>> data, vector<int> labels, int k = 3)
 {
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     priority_queue<pair<float, int>, vector<pair<float, int>>, greater<pair<float, int>>> pq;
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     for (int i = 0; i < data.size(); ++i)
     {
         float eucledian_dist = 0;
