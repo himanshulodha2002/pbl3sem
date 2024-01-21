@@ -103,10 +103,12 @@ vector<float> interface()
 int main()
 {
   vector<float> point = interface();
+  cout << "Before noralization, ";
   accuracy(mydata, mylabels);
   zscore2D(mydata, point);
   int label = k_nearest_neighbors(point, mydata, mylabels);
-  cout << "The predicted label for the point is: " << label << endl;
+  cout << endl << "The predicted label for the point is: " << label << endl << endl;
+  cout << "After noralization, ";
   accuracy(mydata, mylabels);
   return 0;
 }
