@@ -5,6 +5,7 @@
 #include <numeric>
 #include <algorithm>
 #include "main_data.h"
+#include <unistd.h>
 using namespace std;
 
 void priorityQ(vector<pair<float, int>> &v, pair<float, int> p, int k)
@@ -93,22 +94,62 @@ void accuracy(vector<vector<float>> &data, vector<int> &labels, float testRatio 
   double acc = count * 100 / testData.size();
   cout << "Accuracy is:" << acc << endl;
 }
-vector<float> interface()
+vector<float> interface(int d)
 {
   // add interface and take in point values & return it.
-  ;
-
-  return {5, 121, 72, 23, 112, 26.2, 0.245, 30};
+  int choice;
+  float pregnancies, glucose, bp, skin_thickness, insulin, bmi, age, pedigree;
+  cout << "\t\t\t\t\tD4: Data Driven Diabetes Decipher:\n\n";
+  sleep(1);
+  cout << "Do you want to enter your values or test the application for predined inputs?(choose 1 or 0 respectively):   ";
+  cin >> choice;
+  //choice =0;
+  sleep(0.5);
+  if (choice)
+  {
+    vector<float> input_point(d);
+    cout << "\n1.Enter the number of Pregnancies: ";
+    cin >> pregnancies;
+    input_point.push_back(pregnancies);
+    cout << "\n2.Enter glucose level: ";
+    cin >> glucose;
+    input_point.push_back(glucose);
+    cout << "\n3.Enter the Blood Pressure: ";
+    cin >> bp;
+    input_point.push_back(bp);
+    cout << "\n4.Enter the skin thickness: ";
+    cin >> skin_thickness;
+    input_point.push_back(skin_thickness);
+    cout << "5.Enter the Insulin level: ";
+    cin >> insulin;
+    input_point.push_back(insulin);
+    cout << "6.Enter BMI (Body Mass Index): ";
+    cin >> bmi;
+    input_point.push_back(bmi);
+    cout << "7.Enter Diabetes Pedigree Function(Genetic likelihood of diabetes ): ";
+    cin >> pedigree;
+    input_point.push_back(pedigree);
+    cout << "8.Enter the age: ";
+    cin >> age;
+    input_point.push_back(age);
+    return input_point;
+  }
+  return {5, 121, 72, 23, 112, 26.2, 0.245, 30}; // arbitarily chosen value;
 }
 int main()
 {
-  vector<float> point = interface();
+  vector<float> point = interface(sizeof(mydata[0]));
   cout << "Before noralization, ";
   accuracy(mydata, mylabels);
   zscore2D(mydata, point);
+  sleep(1);
   int label = k_nearest_neighbors(point, mydata, mylabels);
-  cout << endl << "The predicted label for the point is: " << label << endl << endl;
+  cout << endl
+       << "The predicted label for the point is: " << label << endl
+       << endl;
+  sleep(1);
   cout << "After noralization, ";
+  sleep(1);
   accuracy(mydata, mylabels);
   return 0;
 }
