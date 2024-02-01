@@ -100,11 +100,14 @@ vector<float> interface(int d)
   int choice;
   float pregnancies, glucose, bp, skin_thickness, insulin, bmi, age, pedigree;
   cout << "\t\t\t\t\tD4: Data Driven Diabetes Decipher:\n\n";
-  sleep(1);
+  //sleep(1);
+  cout<<"DESCRIPTION: In the context of diabetes prediction, this model likely analyzes features such as blood sugar levels, BMI, and other relevant health indicators to make predictions if you are diabetic or not .";
+  cout<<"\n Press Enter to continue :";
+  getchar();
   cout << "Do you want to enter your values or test the application for predined inputs?(choose 1 or 0 respectively):   ";
   cin >> choice;
   //choice =0;
-  sleep(0.5);
+  //sleep(0.5);
   if (choice)
   {
     vector<float> input_point(d);
@@ -120,36 +123,44 @@ vector<float> interface(int d)
     cout << "\n4.Enter the skin thickness: ";
     cin >> skin_thickness;
     input_point.push_back(skin_thickness);
-    cout << "5.Enter the Insulin level: ";
+    cout << "\n5.Enter the Insulin level: ";
     cin >> insulin;
     input_point.push_back(insulin);
-    cout << "6.Enter BMI (Body Mass Index): ";
+    cout << "\n6.Enter BMI (Body Mass Index): ";
     cin >> bmi;
     input_point.push_back(bmi);
-    cout << "7.Enter Diabetes Pedigree Function(Genetic likelihood of diabetes ): ";
+    cout << "\n7.Enter Diabetes Pedigree Function(Genetic likelihood of diabetes ): ";
     cin >> pedigree;
     input_point.push_back(pedigree);
-    cout << "8.Enter the age: ";
+    cout << "\n8.Enter the age: ";
     cin >> age;
     input_point.push_back(age);
     return input_point;
   }
-  return {5, 121, 72, 23, 112, 26.2, 0.245, 30}; // arbitarily chosen value;
+  return {0, 137, 40, 35, 168, 43.1, 2.288, 33}; // arbitarily chosen value;
 }
 int main()
 {
   vector<float> point = interface(sizeof(mydata[0]));
-  cout << "Before noralization, ";
+  cout << "\nBefore noralization, ";
   accuracy(mydata, mylabels);
   zscore2D(mydata, point);
-  sleep(1);
+  //sleep(1);
   int label = k_nearest_neighbors(point, mydata, mylabels);
   cout << endl
        << "The predicted label for the point is: " << label << endl
        << endl;
-  sleep(1);
+  //sleep(1);
   cout << "After noralization, ";
-  sleep(1);
+  //sleep(1);
   accuracy(mydata, mylabels);
+  //sleep(1);
+  cout<<"\n\nInterpretation of data:";
+  if(label){
+    cout<<" There are high possibilities that you have diabetes.";
+  }
+  else{
+      cout<<" Given data shows no risk of diabetes. But it's advisable to take precautions.\n\n";
+  }
   return 0;
 }
