@@ -195,13 +195,14 @@ int main(int argc, char *argv[])
         outputTextEdit.append("Before normalization, ");
         outputTextEdit.append("Accuracy is: " + QString::number(accuracy(mydata, mylabels)));
         zscore2D(mydata, point);
+        
+        outputTextEdit.append("After normalization, ");
+        outputTextEdit.append("Accuracy is: " + QString::number(accuracy(mydata, mylabels)));
         int label = k_nearest_neighbors(point, mydata, mylabels);
         if(label)
             outputTextEdit.append("There are high possibilities that you may have diabetes.");
         else
-            outputTextEdit.append("Given data shows no risk of diabetes. But it's advisable to take precautions.");
-        outputTextEdit.append("After normalization, ");
-        outputTextEdit.append("Accuracy is: " + QString::number(accuracy(mydata, mylabels))); });
+            outputTextEdit.append("Given data shows no risk of diabetes. But it's advisable to take precautions."); });
     window.show();
     return app.exec();
 }
