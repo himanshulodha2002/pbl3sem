@@ -193,12 +193,13 @@ int main(int argc, char *argv[])
         float age = ageEdit.text().toFloat();
         vector<float> point = {pregnancies, glucose, bloodPressure, skinThickness, insulin, bmi, diabetesPedigree, age};
         outputTextEdit.append("Before normalization, ");
-        outputTextEdit.append("Accuracy is: " + QString::number(accuracy(mydata, mylabels)));
+        outputTextEdit.append("Accuracy is: " + QString::number(accuracy(mydata, mylabels)) + "%");
         zscore2D(mydata, point);
         
         outputTextEdit.append("After normalization, ");
-        outputTextEdit.append("Accuracy is: " + QString::number(accuracy(mydata, mylabels)));
+        outputTextEdit.append("Accuracy is: " + QString::number(accuracy(mydata, mylabels)) + "%");
         int label = k_nearest_neighbors(point, mydata, mylabels);
+        outputTextEdit.append("The predicted label for the point is: " + QString::number(label));
         if(label)
             outputTextEdit.append("There are high possibilities that you may have diabetes.");
         else
