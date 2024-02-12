@@ -41,7 +41,7 @@ int most_found(vector<int> &array)
     }
     return most_counted;
 }
-int k_nearest_neighbors(vector<float> point, vector<vector<float>> data, vector<int> labels, int k = 3)
+int k_nearest_neighbors(vector<float> point, vector<vector<float>> data, vector<int> labels, int k = 2)
 {
     vector<pair<float, int>> pq;
     for (int i = 0; i < data.size(); ++i)
@@ -180,6 +180,7 @@ int main(int argc, char *argv[])
     layout.addRow("Result:", &resultLabel);
 
     QTextEdit outputTextEdit;
+
     layout.addRow(&outputTextEdit);
     QObject::connect(&button, &QPushButton::clicked, [&]()
                      {

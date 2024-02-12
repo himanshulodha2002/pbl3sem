@@ -137,7 +137,7 @@ vector<float> interface(int d)
     input_point.push_back(age);
     return input_point;
   }
-  return {0, 137, 40, 35, 168, 43.1, 2.288, 33}; // arbitarily chosen value;
+  return {0, 137, 40, 35, 168, 43.1, 2.288, 33};
 }
 int main()
 {
